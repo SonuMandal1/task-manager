@@ -1,23 +1,116 @@
-# TaskFlow — Task Management System
+# 🚀 TaskFlow — Task Management System
 
-A full-stack Task Management System built with **Node.js + TypeScript** (backend) and **Next.js + TypeScript** (frontend).
+> Built for **Earnest Data Analytics** Software Engineering Assessment  
+> Track A: Full-Stack Engineer (Backend + Web Frontend)
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20App-brightgreen?style=for-the-badge)](https://task-manager-coral-mu.vercel.app/)
+[![Backend API](https://img.shields.io/badge/Backend%20API-Live-blue?style=for-the-badge)](https://task-manager-backend-emge.onrender.com)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/SonuMandal1/Task-Management-System-)
+
+---
+
+## 📌 About This Project
+
+TaskFlow is a **production-ready, full-stack Task Management System** built as part of the **Earnest Data Analytics Software Engineering Recruitment Assessment**. The system allows users to securely register, log in, and perform complete management of their personal tasks with a beautiful, responsive interface.
+
+The project is **fully deployed and live** — both the backend API and the frontend web application are running in production.
+
+---
+
+## 🌐 Live Deployment
+
+| Service | URL |
+|---------|-----|
+| 🌐 **Frontend (Next.js)** |  https://task-manager-coral-mu.vercel.app/ |
+| ⚙️ **Backend API (Node.js)** | https://task-manager-backend-emge.onrender.com |
+| 🗄️ **Database** | Neon PostgreSQL (Cloud) |
+
+---
+
+## ✨ Features Implemented
+
+### 🔐 Authentication & Security
+- ✅ User Registration with full validation
+- ✅ User Login with email & password
+- ✅ JWT Access Tokens (short-lived, 15 minutes)
+- ✅ JWT Refresh Tokens (long-lived, 7 days) stored in HttpOnly cookies
+- ✅ Automatic token refresh — user stays logged in seamlessly
+- ✅ Token rotation on every refresh for maximum security
+- ✅ Password hashing using **bcrypt** (12 salt rounds)
+- ✅ Secure Logout with token revocation
+
+### 📋 Task Management (Full CRUD)
+- ✅ Create tasks with title, description, priority and due date
+- ✅ View all tasks with beautiful card layout
+- ✅ Edit tasks via modal form
+- ✅ Delete tasks with confirmation dialog
+- ✅ Toggle task status (Pending → In Progress → Completed)
+- ✅ Task priority levels — Low, Medium, High
+- ✅ Due date tracking with overdue detection
+
+### 🔍 Advanced Task Features
+- ✅ **Pagination** — tasks loaded in batches
+- ✅ **Search** — search tasks by title (debounced)
+- ✅ **Filter** — filter by status and priority
+- ✅ **Real-time stats** — total, pending, in-progress, completed counts
+
+### 🎨 UI/UX
+- ✅ Fully **responsive design** — works on mobile and desktop
+- ✅ Beautiful dark theme with glass morphism
+- ✅ Toast notifications for all actions
+- ✅ Loading states and smooth animations
+- ✅ Confirmation dialogs for destructive actions
+- ✅ Empty states with helpful prompts
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+| Technology | Purpose |
+|-----------|---------|
+| **Node.js** | Server runtime |
+| **Express.js** | Web framework |
+| **TypeScript** | Type safety throughout |
+| **Prisma ORM** | Database access & migrations |
+| **PostgreSQL (Neon)** | Production database |
+| **JWT (jsonwebtoken)** | Access & refresh token auth |
+| **bcryptjs** | Password hashing |
+| **express-validator** | Input validation |
+| **cookie-parser** | HttpOnly cookie handling |
+
+### Frontend
+| Technology | Purpose |
+|-----------|---------|
+| **Next.js 14** | React framework (App Router) |
+| **TypeScript** | Type safety throughout |
+| **Tailwind CSS** | Utility-first styling |
+| **React Hook Form** | Form handling |
+| **Zod** | Schema validation |
+| **Axios** | HTTP client with interceptors |
+| **react-hot-toast** | Toast notifications |
+| **lucide-react** | Icon library |
+
+### DevOps & Deployment
+| Technology | Purpose |
+|-----------|---------|
+| **Vercel** | Frontend deployment |
+| **Render** | Backend deployment |
+| **Neon** | Cloud PostgreSQL database |
+| **GitHub** | Version control |
 
 ---
 
 ## 📁 Project Structure
-
 ```
 task-manager/
-├── backend/          # Node.js + TypeScript API
+├── backend/                  # Node.js + TypeScript API
 │   ├── prisma/
-│   │   └── schema.prisma
+│   │   └── schema.prisma     # Database schema
 │   ├── src/
 │   │   ├── controllers/
 │   │   │   ├── auth.controller.ts
 │   │   │   └── task.controller.ts
-│   │   ├── lib/
-│   │   │   ├── prisma.ts
-│   │   │   └── jwt.ts
 │   │   ├── middleware/
 │   │   │   ├── auth.middleware.ts
 │   │   │   ├── error.middleware.ts
@@ -25,26 +118,19 @@ task-manager/
 │   │   ├── routes/
 │   │   │   ├── auth.routes.ts
 │   │   │   └── task.routes.ts
-│   │   ├── utils/
-│   │   │   └── date.ts
+│   │   ├── lib/
+│   │   │   ├── prisma.ts
+│   │   │   └── jwt.ts
 │   │   └── index.ts
-│   ├── .env.example
-│   ├── package.json
-│   └── tsconfig.json
+│   └── package.json
 │
-└── frontend/         # Next.js 14 + TypeScript
+└── frontend/                 # Next.js 14 + TypeScript
     ├── src/
     │   ├── app/
     │   │   ├── (app)/
-    │   │   │   ├── login/page.tsx
-    │   │   │   ├── register/page.tsx
-    │   │   │   ├── dashboard/
-    │   │   │   │   ├── layout.tsx
-    │   │   │   │   └── page.tsx
-    │   │   │   └── layout.tsx
-    │   │   ├── globals.css
-    │   │   ├── layout.tsx
-    │   │   └── page.tsx
+    │   │   │   ├── login/
+    │   │   │   ├── register/
+    │   │   │   └── dashboard/
     │   ├── components/
     │   │   ├── TaskCard.tsx
     │   │   ├── TaskModal.tsx
@@ -52,51 +138,102 @@ task-manager/
     │   │   └── StatsCard.tsx
     │   ├── contexts/
     │   │   └── AuthContext.tsx
-    │   ├── lib/
-    │   │   ├── api.ts
-    │   │   ├── auth.ts
-    │   │   ├── tasks.ts
-    │   │   └── utils.ts
-    │   └── types/
-    │       └── index.ts
-    ├── .env.example
-    ├── package.json
-    ├── tailwind.config.ts
-    └── tsconfig.json
+    │   └── lib/
+    │       ├── api.ts
+    │       ├── auth.ts
+    │       └── tasks.ts
+    └── package.json
 ```
 
 ---
 
-## 🚀 Quick Start
+## 🔌 API Endpoints
+
+### Authentication
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/auth/register` | Register new user |
+| POST | `/auth/login` | Login user |
+| POST | `/auth/refresh` | Refresh access token |
+| POST | `/auth/logout` | Logout user |
+
+### Tasks (All require authentication)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/tasks` | Get all tasks (paginated, filterable) |
+| POST | `/tasks` | Create new task |
+| GET | `/tasks/:id` | Get single task |
+| PATCH | `/tasks/:id` | Update task |
+| DELETE | `/tasks/:id` | Delete task |
+| PATCH | `/tasks/:id/toggle` | Toggle task status |
+
+### Query Parameters for GET /tasks
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `page` | number | Page number |
+| `limit` | number | Items per page |
+| `status` | string | Filter by PENDING, IN_PROGRESS, COMPLETED |
+| `priority` | string | Filter by LOW, MEDIUM, HIGH |
+| `search` | string | Search by task title |
+
+---
+
+## 🗄️ Database Schema
+```prisma
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  name          String
+  passwordHash  String
+  tasks         Task[]
+  refreshTokens RefreshToken[]
+}
+
+model Task {
+  id          String    @id @default(cuid())
+  title       String
+  description String?
+  status      String    @default("PENDING")
+  priority    String    @default("MEDIUM")
+  dueDate     DateTime?
+  userId      String
+  user        User      @relation(...)
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+}
+```
+
+---
+
+## 🚀 Running Locally (Step by Step)
 
 ### Prerequisites
-- **Node.js** v18+ (https://nodejs.org)
-- **npm** v9+
+- **Node.js** v18+ — https://nodejs.org
+- **Git** — https://git-scm.com
+- **VS Code** — https://code.visualstudio.com
 
----
-
-## Backend Setup
-
-### 1. Navigate to backend
+### Step 1 — Clone the repository
 ```bash
-cd task-manager/backend
+git clone https://github.com/SonuMandal1/Task-Management-System-.git
+cd Task-Management-System-
 ```
 
-### 2. Install dependencies
+### Step 2 — Setup Backend
 ```bash
+cd backend
 npm install
 ```
 
-### 3. Create environment file
-```bash
-cp .env.example .env
-```
-
-Your `.env` should look like:
+Create `.env` file inside the `backend` folder:
 ```env
 DATABASE_URL="file:./dev.db"
-JWT_ACCESS_SECRET="change-this-secret-in-production-abc123"
-JWT_REFRESH_SECRET="change-this-other-secret-in-production-xyz789"
+JWT_ACCESS_SECRET="your-access-secret-key"
+JWT_REFRESH_SECRET="your-refresh-secret-key"
 JWT_ACCESS_EXPIRES_IN="15m"
 JWT_REFRESH_EXPIRES_IN="7d"
 PORT=5000
@@ -104,186 +241,74 @@ NODE_ENV="development"
 CORS_ORIGIN="http://localhost:3000"
 ```
 
-### 4. Setup database
+Run database migrations:
 ```bash
 npx prisma generate
 npx prisma migrate dev --name init
 ```
 
-### 5. Start the backend
+Start the backend:
 ```bash
 npm run dev
 ```
+✅ Backend running at **http://localhost:5000**
 
-✅ Backend runs at: **http://localhost:5000**
-
----
-
-## Frontend Setup
-
-### 1. Navigate to frontend
+### Step 3 — Setup Frontend
+Open a **new terminal** and run:
 ```bash
-cd task-manager/frontend
-```
-
-### 2. Install dependencies
-```bash
+cd frontend
 npm install
 ```
 
-### 3. Create environment file
-```bash
-cp .env.example .env.local
-```
-
-`.env.local`:
+Create `.env.local` file inside the `frontend` folder:
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:5000
 ```
 
-### 4. Start the frontend
+Start the frontend:
 ```bash
 npm run dev
 ```
+✅ Frontend running at **http://localhost:3000**
 
-✅ Frontend runs at: **http://localhost:3000**
-
----
-
-## 🔌 API Endpoints
-
-### Auth
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| POST | `/auth/register` | Register new user | ❌ |
-| POST | `/auth/login` | Login | ❌ |
-| POST | `/auth/refresh` | Refresh access token | ❌ (uses cookie) |
-| POST | `/auth/logout` | Logout | ❌ |
-
-### Tasks
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| GET | `/tasks` | List tasks (paginated, filterable) | ✅ |
-| POST | `/tasks` | Create task | ✅ |
-| GET | `/tasks/:id` | Get single task | ✅ |
-| PATCH | `/tasks/:id` | Update task | ✅ |
-| DELETE | `/tasks/:id` | Delete task | ✅ |
-| PATCH | `/tasks/:id/toggle` | Cycle task status | ✅ |
-
-### Query Params for GET /tasks
-| Param | Type | Example |
-|-------|------|---------|
-| `page` | number | `?page=2` |
-| `limit` | number | `?limit=10` |
-| `status` | string | `?status=PENDING` |
-| `priority` | string | `?priority=HIGH` |
-| `search` | string | `?search=meeting` |
+### Step 4 — Open in browser
+```
+http://localhost:3000
+```
 
 ---
 
 ## 🔒 Security Features
 
-- **JWT Access Tokens** — short-lived (15min), sent in Authorization header
-- **JWT Refresh Tokens** — long-lived (7 days), stored in HttpOnly cookie
+- **JWT Access Tokens** — expire in 15 minutes
+- **JWT Refresh Tokens** — expire in 7 days, stored in HttpOnly cookies
 - **Token Rotation** — new refresh token issued on every refresh
-- **bcrypt** password hashing (12 salt rounds)
-- **Input Validation** via express-validator + Zod
-- **Auto token refresh** — Axios interceptor silently refreshes expired tokens
+- **bcrypt** — passwords hashed with 12 salt rounds
+- **Input Validation** — all inputs validated on both frontend and backend
+- **CORS Protection** — only allowed origins can access the API
+- **User Isolation** — users can only access their own tasks
 
 ---
 
-## 🎨 Frontend Features
+## 👨‍💻 Developer
 
-- ✅ Login & Register with validation
-- ✅ Dashboard with real-time stats (total, pending, in-progress, completed)
-- ✅ Create, Edit, Delete tasks via modal
-- ✅ Toggle task status (cycles: Pending → In Progress → Completed → Pending)
-- ✅ Search tasks by title (debounced)
-- ✅ Filter by status and priority
-- ✅ Pagination
-- ✅ Overdue date indicator
-- ✅ Toast notifications for all actions
-- ✅ Fully responsive (mobile + desktop)
-- ✅ Dark mode design
+**Sonu Mandal**  
+GitHub: [@SonuMandal1](https://github.com/SonuMandal1)  
+Email: 22054371@kiit.ac.in
 
 ---
 
-## 🛠 Tech Stack
+## 📄 Assignment Details
 
-### Backend
-- **Node.js + Express** — Server framework
-- **TypeScript** — Type safety
-- **Prisma ORM** — Database access
-- **SQLite** — Database (swap to PostgreSQL for production)
-- **JWT** — Authentication tokens
-- **bcryptjs** — Password hashing
-- **express-validator** — Input validation
-
-### Frontend
-- **Next.js 14** (App Router) — React framework
-- **TypeScript** — Type safety
-- **Tailwind CSS** — Styling
-- **react-hook-form + Zod** — Form handling & validation
-- **Axios** — HTTP client with interceptors
-- **react-hot-toast** — Toast notifications
-- **lucide-react** — Icons
+- **Company:** Earnest Data Analytics  
+- **Role:** Full-Stack Engineer  
+- **Track:** Track A — Backend (Node.js) + Web Frontend (Next.js)  
+- **Assessment:** Task Management System
 
 ---
 
-## 🗄 Database Schema
-
-```prisma
-User {
-  id           String
-  email        String (unique)
-  name         String
-  passwordHash String
-  tasks        Task[]
-  refreshTokens RefreshToken[]
-}
-
-Task {
-  id          String
-  title       String
-  description String?
-  status      PENDING | IN_PROGRESS | COMPLETED
-  priority    LOW | MEDIUM | HIGH
-  dueDate     DateTime?
-  userId      String (FK -> User)
-}
-
-RefreshToken {
-  id        String
-  token     String (unique)
-  userId    String (FK -> User)
-  expiresAt DateTime
-}
+*Built with ❤️ for Earnest Data Analytics Recruitment Drive*
 ```
 
 ---
 
-## 📦 Production Deployment
-
-### Switch to PostgreSQL
-1. Change `provider = "sqlite"` to `provider = "postgresql"` in `prisma/schema.prisma`
-2. Update `DATABASE_URL` to your PostgreSQL connection string
-3. Run `npx prisma migrate deploy`
-
-### Environment Variables for Production
-```env
-NODE_ENV=production
-JWT_ACCESS_SECRET=<strong-random-secret>
-JWT_REFRESH_SECRET=<different-strong-random-secret>
-DATABASE_URL=postgresql://user:password@host:5432/dbname
-CORS_ORIGIN=https://your-frontend-domain.com
-```
-
----
-
-## ❓ Troubleshooting
-
-**"Cannot connect to backend"** — Make sure backend is running on port 5000 and `NEXT_PUBLIC_API_URL` is set correctly.
-
-**"Prisma client not generated"** — Run `npx prisma generate` in the backend folder.
-
-**CORS errors** — Check `CORS_ORIGIN` in backend `.env` matches your frontend URL exactly.
